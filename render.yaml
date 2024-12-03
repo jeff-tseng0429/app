@@ -1,6 +1,9 @@
 services:
   - type: web
-    name: your-service-name
+    name: flask-app
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:app"
+    envVars:
+      - key: PORT
+        value: "5000"
