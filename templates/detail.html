@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{{ todo.title }} ({{ todo.time }})</h2>
+    <p>{{ todo.content }}</p>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">返回列表</a>
+    <a href="{{ url_for('edit_page', id=todo.id) }}" class="btn btn-primary">編輯</a>
+    <button onclick="deleteTodo()" class="btn btn-danger">刪除</button>
+
+    <script>
+        async function deleteTodo() {
+            await fetch('/api/todos/{{ todo.id }}', { method: 'DELETE' });
+            window.location.href = '/';
+        }
+    </script>
+{% endblock %}

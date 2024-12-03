@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 class="mt-4">待辦事項列表</h2>
+    <ul class="list-group mt-3">
+        {% for todo in todos %}
+            <li class="list-group-item">
+                <h5>{{ todo.title }} ({{ todo.time }})</h5>
+                <p>{{ todo.content }}</p>
+                <a href="{{ url_for('todo_detail', id=todo.id) }}" class="btn btn-sm btn-primary">查看</a>
+            </li>
+        {% else %}
+            <li class="list-group-item">暫無待辦事項。</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('create_page') }}" class="btn btn-success mt-4">新增待辦事項</a>
+{% endblock %}
